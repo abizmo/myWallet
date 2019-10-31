@@ -1,16 +1,25 @@
 import React from "react";
 import * as Font from "expo-font";
-import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
+import {
+  ActivityIndicator,
+  Button,
+  ScrollView,
+  StyleSheet,
+  View
+} from "react-native";
 
 import {
   AccountsList,
   Balance,
   Header,
+  Modal,
   StatusBar,
   Text,
   TransactionsList
 } from "./components";
+
 import { theme } from "./constants";
+
 const accounts = [
   {
     id: 1,
@@ -71,7 +80,8 @@ const transactions = [
 
 export default class App extends React.Component {
   state = {
-    fontLoaded: false
+    fontLoaded: false,
+    modalVisible: false
   };
 
   async componentDidMount() {
@@ -110,6 +120,15 @@ export default class App extends React.Component {
             <TransactionsList transactions={transactions} />
           </View>
         </ScrollView>
+        <Modal
+          isVisible={this.state.modalVisible}
+          onClose={() => this.setState({ modalVisible: false })}
+        >
+          <Button
+            title={"close"}
+            onPress={() => this.setState({ modalVisible: false })}
+          />
+        </Modal>
       </View>
     );
   }
