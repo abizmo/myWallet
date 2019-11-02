@@ -20,7 +20,6 @@ export default class extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // height: height,
     justifyContent: "center",
     backgroundColor: "#EDEDEDCC"
   },
@@ -30,6 +29,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: "#EDEDED",
     borderWidth: 1,
-    height: 200
+    paddingVertical: 48,
+    paddingHorizontal: 24,
+    elevation: 3
   }
 });

@@ -1,14 +1,137 @@
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import Card from "./Card";
+import Modal from "./Modal";
 import Text from "./Text";
+import { colors } from "../constants/theme";
 
 export default class TransactionsList extends React.Component {
-  renderTransaction({ id, date, description, ammount, image }) {
+  state = {
+    modalVisible: false,
+    transaction: {}
+  };
+
+  _renderTransactionDetail() {
+    const {
+      kind,
+      source,
+      destination,
+      date,
+      description,
+      ammount,
+      category,
+      subcategory
+    } = this.state.transaction;
+    let transactionColor = colors.red;
+    if (kind === "income") transactionColor = colors.blue;
+    if (kind === "movement") transactionColor = colors.yellow;
+    return (
+      <Modal
+        isVisible={this.state.modalVisible}
+        onClose={() => this.setState({ modalVisible: false })}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 24
+          }}
+        >
+          <View>
+            <View style={{ marginBottom: 8 }}>
+              <Text
+                smaller
+                color="darkerGrey"
+                weight="bold"
+                style={{ textTransform: "uppercase" }}
+              >
+                Origen
+              </Text>
+              <Text big>{source}</Text>
+            </View>
+            <View>
+              <Text
+                smaller
+                color="darkerGrey"
+                weight="bold"
+                style={{ textTransform: "uppercase" }}
+              >
+                Destino
+              </Text>
+              <Text big>{destination}</Text>
+            </View>
+          </View>
+          <View
+            style={{ alignItems: "flex-end", justifyContent: "space-between" }}
+          >
+            <Text small color="darkGrey">
+              {date}
+            </Text>
+            <Text biggest>{ammount}</Text>
+            <Text big>{description}</Text>
+          </View>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between"
+          }}
+        >
+          <View>
+            <Text
+              smaller
+              color="darkerGrey"
+              weight="bold"
+              style={{ textTransform: "uppercase" }}
+            >
+              Categoria
+            </Text>
+            <Text big>{category}</Text>
+          </View>
+          <View style={{ alignItems: "flex-end" }}>
+            <Text
+              smaller
+              color="darkerGrey"
+              weight="bold"
+              style={{ textTransform: "uppercase" }}
+            >
+              Subcategoria
+            </Text>
+            <Text big>{subcategory}</Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          onPressOut={() => this.setState({ modalVisible: false })}
+          style={{
+            backgroundColor: transactionColor,
+            borderColor: transactionColor,
+            borderWidth: 2,
+            borderRadius: 16,
+            paddingHorizontal: 24,
+            paddingVertical: 8,
+            alignSelf: "center",
+            marginTop: 32
+          }}
+        >
+          <Text
+            normal
+            weight="black"
+            color="white"
+            style={{ textTransform: "uppercase" }}
+          >
+            Cerrar
+          </Text>
+        </TouchableOpacity>
+      </Modal>
+    );
+  }
+
+  renderTransaction(transaction) {
+    const { id, date, description, ammount, image } = transaction;
     return (
       <Card key={id} style={styles.container}>
         <TouchableOpacity
-          onPress={() => console.log(`Transaction: ${id}`)}
+          onPress={() => this.setState({ modalVisible: true, transaction })}
           style={styles.button}
         >
           <View style={styles.info}>
@@ -32,7 +155,12 @@ export default class TransactionsList extends React.Component {
 
   render() {
     const { transactions } = this.props;
-    return transactions.map(transaction => this.renderTransaction(transaction));
+    return (
+      <View>
+        {transactions.map(transaction => this.renderTransaction(transaction))}
+        {this._renderTransactionDetail()}
+      </View>
+    );
   }
 }
 

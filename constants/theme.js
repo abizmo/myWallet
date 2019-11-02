@@ -39,8 +39,8 @@ const colors = {
   lightGrey: "#FCFCFC",
   white: "#FFFFFF",
   red: "#D64045",
-  blue: "#9ED8DB",
-  yellow: "#FFC16E"
+  blue: "#429E9E",
+  yellow: "#D67900"
 };
 
 export { colors, fonts, sizes };
