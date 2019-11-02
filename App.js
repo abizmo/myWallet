@@ -1,87 +1,23 @@
 import React from "react";
 import * as Font from "expo-font";
-import {
-  ActivityIndicator,
-  Button,
-  ScrollView,
-  StyleSheet,
-  View
-} from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, View } from "react-native";
 
 import {
   AccountsList,
   Balance,
   Header,
-  Modal,
   StatusBar,
   Text,
   TransactionsList
 } from "./components";
 
-import { theme } from "./constants";
-
-const accounts = [
-  {
-    id: 1,
-    name: "Casa",
-    total: "1.732,07 €",
-    color: "#B0F2B4"
-  },
-  {
-    id: 2,
-    name: "Personal 1",
-    total: "32,45 €",
-    color: "#BAF2E9"
-  },
-  {
-    id: 3,
-    name: "Personal 2",
-    total: "129,31 €",
-    color: "#F2BAC9"
-  }
-];
-const transactions = [
-  {
-    id: 1,
-    date: "11-10-2019",
-    description: "Retirada en efectivo",
-    ammount: "230,00 €",
-    image: require("./assets/images/IconoGasto.png")
-  },
-  {
-    id: 2,
-    date: "08-10-2019",
-    description: "Nómina",
-    ammount: "1.500,00 €",
-    image: require("./assets/images/IconoIngreso.png")
-  },
-  {
-    id: 3,
-    date: "01-10-2019",
-    description: "Gasolina",
-    ammount: "44,37 €",
-    image: require("./assets/images/IconoGasto.png")
-  },
-  {
-    id: 4,
-    date: "30-09-2019",
-    description: "Compra super",
-    ammount: "184,10 €",
-    image: require("./assets/images/IconoGasto.png")
-  },
-  {
-    id: 5,
-    date: "25-09-2019",
-    description: "Devolución internet",
-    ammount: "83,65 €",
-    image: require("./assets/images/IconoIngreso.png")
-  }
-];
+import { mock, theme } from "./constants";
 
 export default class App extends React.Component {
   state = {
     fontLoaded: false,
-    modalVisible: false
+    accounts: [],
+    transactions: []
   };
 
   async componentDidMount() {
@@ -90,8 +26,13 @@ export default class App extends React.Component {
       bold: require("./assets/fonts/Lato-Bold.ttf"),
       regular: require("./assets/fonts/Lato-Regular.ttf")
     });
-    this.setState({ fontLoaded: true });
+    this.setState({
+      fontLoaded: true,
+      accounts: mock.accounts,
+      transactions: mock.transactions
+    });
   }
+
   renderApp() {
     const accountsTitleStyle = [
       styles.title,
@@ -111,24 +52,18 @@ export default class App extends React.Component {
             <Text normal weight="black" style={accountsTitleStyle}>
               Cuentas
             </Text>
-            <AccountsList accounts={accounts} />
+            <AccountsList accounts={this.state.accounts} />
           </View>
           <View style={styles.transactions}>
             <Text normal weight="black" style={styles.title}>
               Transacciones Recientes
             </Text>
-            <TransactionsList transactions={transactions} />
+            <TransactionsList
+              transactions={this.state.transactions}
+              onPress={() => this.setState({ modalVisible: true })}
+            />
           </View>
         </ScrollView>
-        <Modal
-          isVisible={this.state.modalVisible}
-          onClose={() => this.setState({ modalVisible: false })}
-        >
-          <Button
-            title={"close"}
-            onPress={() => this.setState({ modalVisible: false })}
-          />
-        </Modal>
       </View>
     );
   }
