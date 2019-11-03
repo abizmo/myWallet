@@ -23,9 +23,7 @@ export default class TransactionsList extends React.Component {
       category,
       subcategory
     } = this.state.transaction;
-    let transactionColor = colors.red;
-    if (kind === "income") transactionColor = colors.blue;
-    if (kind === "movement") transactionColor = colors.yellow;
+
     return (
       <Modal
         isVisible={this.state.modalVisible}
@@ -104,8 +102,8 @@ export default class TransactionsList extends React.Component {
         <TouchableOpacity
           onPressOut={() => this.setState({ modalVisible: false })}
           style={{
-            backgroundColor: transactionColor,
-            borderColor: transactionColor,
+            backgroundColor: colors[kind],
+            borderColor: colors[kind],
             borderWidth: 2,
             borderRadius: 16,
             paddingHorizontal: 24,
@@ -127,7 +125,7 @@ export default class TransactionsList extends React.Component {
     );
   }
 
-  renderTransaction(transaction) {
+  _renderTransaction(transaction) {
     const { id, date, description, ammount, kind } = transaction;
     return (
       <Card key={id} style={styles.container}>
@@ -158,7 +156,7 @@ export default class TransactionsList extends React.Component {
     const { transactions } = this.props;
     return (
       <View>
-        {transactions.map(transaction => this.renderTransaction(transaction))}
+        {transactions.map(transaction => this._renderTransaction(transaction))}
         {this._renderTransactionDetail()}
       </View>
     );

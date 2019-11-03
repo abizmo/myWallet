@@ -38,9 +38,9 @@ const colors = {
   grey: "#EDEDED",
   lightGrey: "#FCFCFC",
   white: "#FFFFFF",
-  red: "#D64045",
-  blue: "#429E9E",
-  yellow: "#D67900"
+  expense: "#D64045",
+  income: "#429E9E",
+  movement: "#D67900"
 };
 
 export { colors, fonts, sizes };
