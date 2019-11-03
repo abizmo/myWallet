@@ -76,4 +76,71 @@ const transactions = [
   }
 ];
 
-export { accounts, transactions };
+const categories = {
+  income: {
+    id: 1,
+    name: "Ingreso",
+    items: [
+      {
+        id: 11,
+        name: "Sueldo",
+        items: [
+          {
+            id: 111,
+            name: "Nómina"
+          },
+          {
+            id: 112,
+            name: "Paga extra"
+          }
+        ]
+      },
+      {
+        id: 12,
+        name: "Otros",
+        items: [
+          {
+            id: 121,
+            name: "Otros"
+          }
+        ]
+      }
+    ]
+  },
+  expense: {
+    id: 2,
+    name: "Gastos",
+    items: [
+      {
+        id: 21,
+        name: "Gastos diarios",
+        items: [
+          {
+            id: 211,
+            name: "Compra"
+          },
+          {
+            id: 212,
+            name: "Ropa"
+          }
+        ]
+      },
+      {
+        id: 22,
+        name: "Otros",
+        items: [
+          {
+            id: 221,
+            name: "Otros"
+          }
+        ]
+      }
+    ]
+  },
+  movement: {
+    id: 3,
+    name: "Movimientos"
+  }
+};
+
+export { accounts, categories, transactions };
