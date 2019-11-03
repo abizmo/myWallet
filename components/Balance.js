@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import Card from "./Card";
 import Text from "./Text";
-import { theme } from "../constants";
+import { images, theme } from "../constants";
+const { icons } = images;
 
 const { width } = Dimensions.get("window");
 
@@ -25,30 +26,21 @@ export default class Balance extends React.Component {
             onPressOut={() => console.log("Add Income")}
             style={styles.action}
           >
-            <Image
-              source={require("../assets/images/IconoIngreso.png")}
-              style={styles.icon}
-            />
+            <Image source={icons.income} style={styles.icon} />
             <Text small>Ingreso</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPressOut={() => console.log("Add Movement")}
             style={styles.action}
           >
-            <Image
-              source={require("../assets/images/IconoMov.png")}
-              style={styles.icon}
-            />
+            <Image source={icons.movement} style={styles.icon} />
             <Text small>Movimiento</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPressOut={() => console.log("Add Expense")}
             style={styles.action}
           >
-            <Image
-              source={require("../assets/images/IconoGasto.png")}
-              style={styles.icon}
-            />
+            <Image source={icons.expense} style={styles.icon} />
             <Text small>Gasto</Text>
           </TouchableOpacity>
         </View>

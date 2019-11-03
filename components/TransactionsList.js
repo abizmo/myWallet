@@ -4,6 +4,7 @@ import Card from "./Card";
 import Modal from "./Modal";
 import Text from "./Text";
 import { colors } from "../constants/theme";
+import { icons } from "../constants/images";
 
 export default class TransactionsList extends React.Component {
   state = {
@@ -127,7 +128,7 @@ export default class TransactionsList extends React.Component {
   }
 
   renderTransaction(transaction) {
-    const { id, date, description, ammount, image } = transaction;
+    const { id, date, description, ammount, kind } = transaction;
     return (
       <Card key={id} style={styles.container}>
         <TouchableOpacity
@@ -147,7 +148,7 @@ export default class TransactionsList extends React.Component {
               {ammount}
             </Text>
           </View>
-          <Image source={image} style={styles.background} />
+          <Image source={icons[kind]} style={styles.background} />
         </TouchableOpacity>
       </Card>
     );

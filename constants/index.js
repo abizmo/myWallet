@@ -1,4 +1,5 @@
 import * as mock from "./mock";
 import * as theme from "./theme";
+import * as images from "./images";
 
-export { mock, theme };
+export { images, mock, theme };
