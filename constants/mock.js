@@ -2,19 +2,19 @@ const accounts = [
   {
     id: 1,
     name: "Casa",
-    total: "1.732,07 €",
+    total: 1732.07,
     color: "#B0F2B4"
   },
   {
     id: 2,
     name: "Personal 1",
-    total: "32,45 €",
+    total: 32.45,
     color: "#BAF2E9"
   },
   {
     id: 3,
     name: "Personal 2",
-    total: "129,31 €",
+    total: 129.31,
     color: "#F2BAC9"
   }
 ];

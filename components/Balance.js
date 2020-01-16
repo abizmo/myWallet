@@ -13,41 +13,39 @@ const { icons } = images;
 
 const { width } = Dimensions.get("window");
 
-export default class Balance extends React.Component {
-  render() {
-    return (
-      <Card style={styles.card}>
-        <View style={styles.info}>
-          <Text big>Balance</Text>
-          <Text biggest>11.243 €</Text>
-        </View>
-        <View style={styles.actions}>
-          <TouchableOpacity
-            onPressOut={() => console.log("Add Income")}
-            style={styles.action}
-          >
-            <Image source={icons.income} style={styles.icon} />
-            <Text small>Ingreso</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPressOut={() => console.log("Add Movement")}
-            style={styles.action}
-          >
-            <Image source={icons.movement} style={styles.icon} />
-            <Text small>Movimiento</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPressOut={() => console.log("Add Expense")}
-            style={styles.action}
-          >
-            <Image source={icons.expense} style={styles.icon} />
-            <Text small>Gasto</Text>
-          </TouchableOpacity>
-        </View>
-      </Card>
-    );
-  }
-}
+export default Balance = props => {
+  return (
+    <Card style={styles.card}>
+      <View style={styles.info}>
+        <Text big>Balance</Text>
+        <Text biggest>{props.balance}</Text>
+      </View>
+      <View style={styles.actions}>
+        <TouchableOpacity
+          onPressOut={() => console.log("Add Income")}
+          style={styles.action}
+        >
+          <Image source={icons.income} style={styles.icon} />
+          <Text small>Ingreso</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPressOut={() => console.log("Add Movement")}
+          style={styles.action}
+        >
+          <Image source={icons.movement} style={styles.icon} />
+          <Text small>Movimiento</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPressOut={() => console.log("Add Expense")}
+          style={styles.action}
+        >
+          <Image source={icons.expense} style={styles.icon} />
+          <Text small>Gasto</Text>
+        </TouchableOpacity>
+      </View>
+    </Card>
+  );
+};
 
 const styles = StyleSheet.create({
   card: {
