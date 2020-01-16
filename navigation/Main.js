@@ -4,7 +4,12 @@ import HomeScreen from "../screens/Home";
 
 export default createStackNavigator(
   {
-    home: HomeScreen
+    home: {
+      screen: HomeScreen,
+      navigationOptions: () => ({
+        headerShown: false
+      })
+    }
   },
   {
     initialRouteName: "home"
