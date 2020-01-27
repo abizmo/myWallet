@@ -1,7 +1,7 @@
 const sizes = {
   base: 8,
   font: 14,
-  radius: 4
+  radius: 16
 };
 
 const fonts = {
