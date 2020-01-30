@@ -1,10 +1,12 @@
 import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator } from "react-navigation-drawer";
 
 import HomeScreen from "../screens/Home";
+import CustomDrawer from "../components/CustomDrawer";
 
-export default createStackNavigator(
+const DashboardScreen = createStackNavigator(
   {
-    home: {
+    dashboard: {
       screen: HomeScreen,
       navigationOptions: () => ({
         headerShown: false
@@ -12,6 +14,17 @@ export default createStackNavigator(
     }
   },
   {
-    initialRouteName: "home"
+    initialRouteName: "dashboard"
+  }
+);
+
+export default createDrawerNavigator(
+  {
+    home: {
+      screen: DashboardScreen
+    }
+  },
+  {
+    contentComponent: CustomDrawer
   }
 );

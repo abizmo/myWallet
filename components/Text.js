@@ -30,6 +30,10 @@ export default class Typography extends React.Component {
       style
     ];
 
-    return <Text style={textStyles}>{this.props.children}</Text>;
+    return (
+      <Text style={textStyles} onPress={this.props.onPress}>
+        {this.props.children}
+      </Text>
+    );
   }
 }

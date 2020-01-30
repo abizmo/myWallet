@@ -42,7 +42,7 @@ export default class Home extends React.Component {
       <View style={styles.container}>
         <StatusBar backgroundColor={theme.colors.lightGrey} dark />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Header style={styles.header} />
+          <Header style={styles.header} navigation={this.props.navigation} />
           <View style={styles.balance}>
             <Balance balance={balance} />
           </View>

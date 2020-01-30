@@ -18,7 +18,7 @@ export default class extends React.Component {
     const headerStyle = [styles.header, style];
     return (
       <View style={headerStyle}>
-        <TouchableOpacity onPressOut={() => console.log("Menu")}>
+        <TouchableOpacity onPressOut={() => this.props.navigation.openDrawer()}>
           <Ionicons name="md-menu" size={32} color="black" />
         </TouchableOpacity>
         <Image source={require("../assets/images/Perfil.png")} />
