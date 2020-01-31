@@ -4,7 +4,8 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
+  KeyboardAvoidingView
 } from "react-native";
 import validate from "validate.js";
 import { Card, Text } from "../components";
@@ -63,38 +64,44 @@ export default class Login extends React.Component {
           resizeMode="contain"
           style={styles.logo}
         />
-        <Card style={styles.card}>
-          <TextInput
-            style={styles.input}
-            onChangeText={email => this.setState({ email })}
-            value={email}
-            placeholder="your@email"
-            autoCompleteType="email"
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={password => this.setState({ password })}
-            value={password}
-            placeholder="U0rp4ssw0rd"
-            autoCompleteType="password"
-            secureTextEntry={true}
-          />
-          {this.state.error && (
-            <Text color="red" weight="black" style={{ textAlign: "center" }}>
-              {this.state.error[0]}
-            </Text>
-          )}
-          <TouchableOpacity
-            onPressOut={() => this.handleLogin(navigation)}
-            style={styles.button}
-          >
-            <Text color="white" weight="black" style={styles.label}>
-              Login
-            </Text>
-          </TouchableOpacity>
-        </Card>
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={56}
+          behavior="padding"
+          style={{ width: "100%" }}
+        >
+          <Card style={styles.card}>
+            <TextInput
+              style={styles.input}
+              onChangeText={email => this.setState({ email })}
+              value={email}
+              placeholder="your@email"
+              autoCompleteType="email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={password => this.setState({ password })}
+              value={password}
+              placeholder="U0rp4ssw0rd"
+              autoCompleteType="password"
+              secureTextEntry={true}
+            />
+            {this.state.error && (
+              <Text color="red" weight="black" style={{ textAlign: "center" }}>
+                {this.state.error[0]}
+              </Text>
+            )}
+            <TouchableOpacity
+              onPressOut={() => this.handleLogin(navigation)}
+              style={styles.button}
+            >
+              <Text color="white" weight="black" style={styles.label}>
+                Login
+              </Text>
+            </TouchableOpacity>
+          </Card>
+        </KeyboardAvoidingView>
       </View>
     );
   }
