@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import Text from "./Text";
 import { colors } from "../constants/theme";
 import { icons } from "../constants/images";
-import { currency } from "../utils";
+import { formatCurrency, formatDate } from "../utils";
 
 export default class TransactionsList extends React.Component {
   state = {
@@ -67,9 +67,9 @@ export default class TransactionsList extends React.Component {
             style={{ alignItems: "flex-end", justifyContent: "space-between" }}
           >
             <Text small color="darkGrey">
-              {date}
+              {formatDate(date)}
             </Text>
-            <Text biggest>{currency(ammount)}</Text>
+            <Text biggest>{formatCurrency(ammount)}</Text>
             <Text big>{description}</Text>
           </View>
         </View>
@@ -139,14 +139,14 @@ export default class TransactionsList extends React.Component {
           <View style={styles.info}>
             <View>
               <Text small style={styles.date}>
-                {date}
+                {formatDate(date)}
               </Text>
               <Text small color="darkGrey">
                 {description}
               </Text>
             </View>
             <Text bigger weight="black">
-              {currency(ammount)}
+              {formatCurrency(ammount)}
             </Text>
           </View>
           <Image source={icons[kind]} style={styles.background} />

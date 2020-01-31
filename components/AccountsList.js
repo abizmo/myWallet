@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, ScrollView, StyleSheet } from "react-native";
 import Card from "./Card";
 import Text from "./Text";
-import { currency } from "../utils";
+import { formatCurrency } from "../utils";
 
 export default class AccountsList extends React.Component {
   renderAccount({ id, name, total, color }) {
@@ -13,7 +13,7 @@ export default class AccountsList extends React.Component {
           style={styles.button}
         >
           <Text big weight="bold" style={styles.total}>
-            {currency(total)}
+            {formatCurrency(total)}
           </Text>
           <Text small weight="black" color="darkerGrey">
             {name}

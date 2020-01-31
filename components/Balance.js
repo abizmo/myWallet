@@ -10,7 +10,7 @@ import {
 import Card from "./Card";
 import Text from "./Text";
 import { images, theme } from "../constants";
-import { currency } from "../utils";
+import { formatCurrency } from "../utils";
 
 const { icons } = images;
 const { width } = Dimensions.get("window");
@@ -20,7 +20,7 @@ export default Balance = props => {
     <Card style={styles.card}>
       <View style={styles.info}>
         <Text big>Balance</Text>
-        <Text biggest>{currency(props.balance)}</Text>
+        <Text biggest>{formatCurrency(props.balance)}</Text>
       </View>
       <View style={styles.actions}>
         <TouchableOpacity
