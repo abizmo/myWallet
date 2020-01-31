@@ -18,7 +18,11 @@ export default class Login extends React.Component {
   };
 
   componentDidMount() {
-    firebase.authUser(user => user && this.props.navigation.navigate("main"));
+    firebase
+      .auth()
+      .onAuthStateChanged(
+        user => user && this.props.navigation.navigate("main")
+      );
   }
 
   handleLogin = () => {
@@ -39,7 +43,8 @@ export default class Login extends React.Component {
     });
     if (error) return this.setState({ error });
     firebase
-      .doLogin(email, password)
+      .auth()
+      .signInWithEmailAndPassword(email, password)
       .then(({ user }) => {
         this.setState({ user });
         navigation.navigate("main");

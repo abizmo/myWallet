@@ -21,22 +21,8 @@ const firebaseConfig = {
   appId: APP_ID
 };
 
-// Initialize Firebase
-class Firebase {
-  constructor() {
-    firebase.initializeApp(firebaseConfig);
+export default firebase.initializeApp(firebaseConfig);
 
-    this.auth = firebase.auth();
-    this.db = firebase.database();
-  }
+// this.auth.signInWithEmailAndPassword(email, password);
 
-  doLogin(email, password) {
-    return this.auth.signInWithEmailAndPassword(email, password);
-  }
-
-  authUser(cb) {
-    return this.auth.onAuthStateChanged(cb);
-  }
-}
-
-export default new Firebase();
+// .auth.onAuthStateChanged(cb);
