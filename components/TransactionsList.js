@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import Text from "./Text";
 import { colors } from "../constants/theme";
 import { icons } from "../constants/images";
+import { currency } from "../utils";
 
 export default class TransactionsList extends React.Component {
   state = {
@@ -68,7 +69,7 @@ export default class TransactionsList extends React.Component {
             <Text small color="darkGrey">
               {date}
             </Text>
-            <Text biggest>{ammount}</Text>
+            <Text biggest>{currency(ammount)}</Text>
             <Text big>{description}</Text>
           </View>
         </View>
@@ -145,7 +146,7 @@ export default class TransactionsList extends React.Component {
               </Text>
             </View>
             <Text bigger weight="black">
-              {ammount}
+              {currency(ammount)}
             </Text>
           </View>
           <Image source={icons[kind]} style={styles.background} />

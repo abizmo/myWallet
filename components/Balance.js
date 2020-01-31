@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
+
 import Card from "./Card";
 import Text from "./Text";
 import { images, theme } from "../constants";
-const { icons } = images;
+import { currency } from "../utils";
 
+const { icons } = images;
 const { width } = Dimensions.get("window");
 
 export default Balance = props => {
@@ -18,7 +20,7 @@ export default Balance = props => {
     <Card style={styles.card}>
       <View style={styles.info}>
         <Text big>Balance</Text>
-        <Text biggest>{props.balance}</Text>
+        <Text biggest>{currency(props.balance)}</Text>
       </View>
       <View style={styles.actions}>
         <TouchableOpacity
