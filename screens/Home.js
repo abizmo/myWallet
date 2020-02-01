@@ -10,6 +10,7 @@ import {
   TransactionsList
 } from "../components";
 
+import {getTransactions} from "../api/firebase";
 import { mock, theme } from "../constants";
 
 export default class Home extends React.Component {
@@ -21,8 +22,14 @@ export default class Home extends React.Component {
   getBalance = accounts =>
     accounts.reduce((balance, account) => balance + account.total, 0);
 
-  componentDidMount() {
-    const { accounts, transactions } = mock;
+  async componentDidMount() {
+    const { accounts } = mock;
+      let transactions;
+      try {
+          transactions = await getTransactions(8);
+      } catch (err) {
+          console.log("Err Home01", err);
+      }
     this.setState({
       accounts,
       transactions,
