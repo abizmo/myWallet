@@ -21,7 +21,7 @@ export default class Home extends React.Component {
 	};
 
 	getBalance = accounts =>
-		accounts.reduce((balance, account) => balance + account.total, 0);
+		accounts.reduce((balance, account) => balance + account.balance, 0);
 
 	componentDidMount() {
 		const accounts = getAccounts();
