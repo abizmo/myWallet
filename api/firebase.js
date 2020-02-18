@@ -24,6 +24,23 @@ const firebaseConfig = {
 
 export default firebase.initializeApp(firebaseConfig);
 
+export async function getAccounts() {
+	const accountsRef = firebase.firestore().collection('accounts');
+	const accounts = [];
+
+	await accountsRef.get()
+		.then(res => {
+			res.forEach(doc => {
+				accounts.push({
+					id: doc.id,
+					...doc.data()
+				})
+			})
+		});
+
+	return accounts;
+}
+
 export async function getTransactions (limit=20) {
     const transactionsRef = firebase.firestore().collection('transactions');
     const transactionsOrdered = transactionsRef.orderBy('date','desc').limit(limit);
