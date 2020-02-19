@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/database";
+import "firebase/firestore";
+
 import {
   API_KEY,
   AUTH_DOMAIN,
@@ -23,6 +24,40 @@ const firebaseConfig = {
 
 export default firebase.initializeApp(firebaseConfig);
 
-// this.auth.signInWithEmailAndPassword(email, password);
+export async function getAccounts() {
+	const accountsRef = firebase.firestore().collection('accounts');
+	const accounts = [];
 
-// .auth.onAuthStateChanged(cb);
+	await accountsRef.get()
+		.then(res => {
+			res.forEach(doc => {
+				accounts.push({
+					id: doc.id,
+					...doc.data()
+				})
+			})
+		});
+
+	return accounts;
+}
+
+export async function getTransactions (limit=20) {
+    const transactionsRef = firebase.firestore().collection('transactions');
+    const transactionsOrdered = transactionsRef.orderBy('date','desc').limit(limit);
+    const transactions = [];
+
+    await transactionsOrdered.get()
+        .then(res => {
+            res.forEach(doc => {
+                const {date, ...rest} = doc.data();
+                const obj = {
+                    id: doc.id,
+                    date: date.toDate(),
+                    ...rest
+                };
+                transactions.push(obj);
+            })
+        });
+
+    return transactions;
+};
